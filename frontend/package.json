@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json"
+    
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
