@@ -11,7 +11,7 @@ export const partidos = [
     "color": "#FF6B35",
     "ideology": "Derecha",
     "founded_year": 2000,
-    "logo_url": 'public/fuerza-popular.png',
+  "logo_url": '/fuerza-popular.png',
     "created_at": "2025-11-08T16:58:03.662Z"
   },
   {
@@ -21,7 +21,7 @@ export const partidos = [
     "color": "#1E90FF",
     "ideology": "Derecha",
     "founded_year": 2000,
-    "logo_url": 'public/RENOVACION-POPULAR.jpg',
+  "logo_url": '/RENOVACION-POPULAR.jpg',
     "created_at": "2025-11-08T16:58:20.583Z"
   },
   /*
@@ -43,7 +43,7 @@ export const partidos = [
     "color": "#FFA726",
     "ideology": "Centro",
     "founded_year": 2000,
-    "logo_url": 'public/somos-peru-3.jpg',
+  "logo_url": '/somos-peru-3.jpg',
     "created_at": "2025-11-08T16:58:46.753Z"
   },
   /*
@@ -65,7 +65,7 @@ export const partidos = [
     "color": "#4CAF50",
     "ideology": "Centro",
     "founded_year": 2000,
-    "logo_url": 'public/Alianza-para-el-progreso.webp',
+  "logo_url": '/Alianza-para-el-progreso.webp',
     "created_at": "2025-11-08T16:59:14.113Z"
   },
   {
@@ -75,7 +75,7 @@ export const partidos = [
     "color": "#D32F2F",
     "ideology": "Derecha",
     "founded_year": 2000,
-    "logo_url": 'public/coop-popular.jpg',
+  "logo_url": '/coop-popular.jpg',
     "created_at": "2025-11-08T16:59:27.469Z"
   }
 ];
