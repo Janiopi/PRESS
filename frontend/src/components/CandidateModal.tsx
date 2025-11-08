@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 // import { supabase } from '../lib/supabase'; // Comentado temporalmente
 import { Candidate, Proposal, JudicialCase, PoliticalParty, NewsArticle } from '../types';
-import { mockParties, mockProposals } from '../data/mockCandidates'; // Datos simulados
+// Datos reales scrapeados de Wikipedia + generados con IA
+import { partidos as mockParties } from '../data/partidosReales';
+import { propuestas as mockProposals } from '../data/propuestasReales';
 import { mockJudicialCases } from '../data/mockJudicialCases'; // Datos simulados
 import { mockNews } from '../data/mockNews'; // Datos simulados
 import { generateCandidateExplanation } from '../services/geminiService'; // IA con Gemini
@@ -53,7 +55,7 @@ export default function CandidateModal({ candidate, onClose }: CandidateModalPro
       const proposalsData = mockProposals.filter(p => p.candidate_id === candidate.id);
       const casesData = mockJudicialCases.filter(c => c.candidate_id === candidate.id);
       const newsData = mockNews.filter(n => 
-        n.related_candidates && n.related_candidates.includes(candidate.id)
+        n.related_candidates && n.related_candidates.includes(String(candidate.id))
       );
 
       if (partyData) setParty(partyData);

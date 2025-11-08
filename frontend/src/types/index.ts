@@ -1,39 +1,44 @@
 export interface PoliticalParty {
-  id: string;
+  id: string | number;
   name: string;
-  acronym: string;
-  logo_url: string;
-  foundation_year: number | null;
-  ideology: string;
-  website: string;
-  created_at: string;
-  updated_at: string;
+  acronym?: string;
+  logo_url?: string | null;
+  foundation_year?: number | null;
+  founded_year?: number; // Para datos scrapeados
+  ideology?: string;
+  color?: string; // Para datos scrapeados
+  website?: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface Candidate {
-  id: string;
-  party_id: string;
+  id: string | number;
+  party_id: string | number;
   full_name: string;
-  position: string;
-  age: number | null;
-  education: string;
-  experience: string;
-  biography: string;
-  photo_url: string;
-  region: string;
-  created_at: string;
-  updated_at: string;
+  position?: string;
+  age?: number | null;
+  education?: string;
+  experience?: string;
+  biography?: string;
+  photo_url?: string;
+  profile_image_url?: string; // Para datos scrapeados
+  wikipedia_url?: string; // Para datos scrapeados
+  birth_date?: string; // Para datos scrapeados
+  region?: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface Proposal {
-  id: string;
-  party_id: string;
-  candidate_id: string | null;
+  id: string | number;
+  party_id?: string | number;
+  candidate_id?: string | number | null;
   category: string;
   title: string;
   description: string;
-  details: string;
-  created_at: string;
+  details?: string;
+  created_at?: string;
 }
 
 export interface JudicialCase {

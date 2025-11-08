@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated files & outputs from scraping
+candidatos-scraped.json
+candidatos-transformed.json
+candidatos-scraped-mejorado.json
+candidatos-transformed-mejorado.json
+
+# Test/exploration files
+frontend/explore-*.js
+frontend/explore-*.html
+frontend/test-*.js
+frontend/test-*.html
+frontend/list-*.js
+frontend/jne-*.html
+frontend/quick-*.js
+frontend/explorar-*.html
+
+# Old versions of scripts
+frontend/scrape-candidatos.js
+frontend/transform-candidatos.js
+
+# Extra documentation (keep only essential)
+GEMINI_INTEGRATION_GUIDE.md
+INTEGRATION_GUIDE.md
+JNE_INTEGRATION.md
+TESTING_GEMINI.md
+SCRAPING_README.md

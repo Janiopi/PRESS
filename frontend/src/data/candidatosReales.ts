@@ -1,0 +1,120 @@
+// Datos REALES de candidatos presidenciales Perú 2026
+// Fuente: Wikipedia + Gemini AI
+// Generado: 8/11/2025, 11:59:40 a. m.
+
+import { Candidate } from '../types';
+
+export const candidatos: Candidate[] = [
+  {
+    "id": 1,
+    "full_name": "Keiko Sofía Fujimori Higuchi",
+    "party_id": 1,
+    "birth_date": "25 de mayo de 1975",
+    "age": 50,
+    "education": "Estudió Administración de Empresas en la Universidad de Stony Brook, obtuvo un B.S. en Administración de Empresas en la Universidad de Boston (1993-1995) y un MBA en la Universidad de Columbia (2004-2008).",
+    "experience": "Primera dama del Perú (1994-2000). Miembro del Congreso de Perú (elegida en 2006). Líder del partido Fuerza Popular (desde 2010). Candidata presidencial (2011, 2016, 2021)",
+    "biography": "Keiko Fujimori es una administradora y política peruana, líder de Fuerza Popular y tres veces candidata presidencial, llegando a la segunda vuelta en todas ellas. Fue primera dama de 1994 a 2000 y miembro del Congreso en 2006. Su trayectoria ha estado marcada por su alineamiento con el fujimorismo, así como por múltiples polémicas, acusaciones de corrupción y procesos judiciales.",
+    "profile_image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Keiko_Fujimori_2.jpg/250px-Keiko_Fujimori_2.jpg",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Keiko_Fujimori_2.jpg/250px-Keiko_Fujimori_2.jpg",
+    "wikipedia_url": "https://es.wikipedia.org/wiki/Keiko_Fujimori",
+    "position": "Candidato Presidencial 2026",
+    "region": "Nacional",
+    "created_at": "2025-11-08T16:58:03.664Z"
+  },
+  {
+    "id": 2,
+    "full_name": "Rafael Bernardo López-Aliaga Cazorla",
+    "party_id": 2,
+    "birth_date": "11 de febrero de 1961",
+    "age": 64,
+    "education": "Grado en Ingeniería industrial por la Universidad de Piura, Maestría en Administración de empresas por la Universidad del Pacífico, e Ingeniería civil por la Universidad Nacional Pedro Ruiz Gallo.",
+    "experience": "Alcalde Metropolitano de Lima (2023-2025). Regidor en la Municipalidad de Lima (2007-2010). Presidente de Renovación Popular (desde 2020)",
+    "biography": "Rafael López-Aliaga es un político y empresario ultraconservador, líder de Renovación Popular y miembro del Opus Dei, conocido por sus posturas provida y neoliberales. Ha ocupado importantes cargos como Regidor y Alcalde Metropolitano de Lima, renunciando a este último en octubre de 2025. Con una trayectoria marcada por aspiraciones presidenciales y controversias, su reciente renuncia sugiere una probable candidatura para las elecciones de 2026.",
+    "profile_image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Rafael_L%C3%B3pez_Aliaga_2024.jpg/250px-Rafael_L%C3%B3pez_Aliaga_2024.jpg",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Rafael_L%C3%B3pez_Aliaga_2024.jpg/250px-Rafael_L%C3%B3pez_Aliaga_2024.jpg",
+    "wikipedia_url": "https://es.wikipedia.org/wiki/Rafael_López_Aliaga",
+    "position": "Candidato Presidencial 2026",
+    "region": "Nacional",
+    "created_at": "2025-11-08T16:58:20.583Z"
+  },
+  {
+    "id": 3,
+    "full_name": "Verónika Fanny Mendoza Frisch",
+    "party_id": 3,
+    "birth_date": "9 de diciembre de 1980",
+    "age": 44,
+    "education": "Licenciada en Psicología por la Universidad de París VII Denis Diderot (2003) y Máster en Ciencias Sociales por la Universidad Sorbona Nueva-París 3 (2006).",
+    "experience": "Congresista de la República por Cusco (2011-2016). Candidata presidencial (2016). Candidata presidencial (2021). Lideresa del Movimiento Nuevo Perú",
+    "biography": "Verónika Mendoza es una destacada política peruana, lideresa del Movimiento Nuevo Perú y psicóloga de profesión. Ha sido dos veces candidata presidencial en las elecciones de 2016 y 2021, y ejerció como congresista de la república por Cusco de 2011 a 2016. Su continua actividad y liderazgo la mantienen como una figura influyente en la izquierda peruana.",
+    "profile_image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Ver%C3%B3nika_Fanny_Mendoza_Frisch.jpg/250px-Ver%C3%B3nika_Fanny_Mendoza_Frisch.jpg",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Ver%C3%B3nika_Fanny_Mendoza_Frisch.jpg/250px-Ver%C3%B3nika_Fanny_Mendoza_Frisch.jpg",
+    "wikipedia_url": "https://es.wikipedia.org/wiki/Verónika_Mendoza",
+    "position": "Candidato Presidencial 2026",
+    "region": "Nacional",
+    "created_at": "2025-11-08T16:58:34.190Z"
+  },
+  {
+    "id": 4,
+    "full_name": "George Patrick Forsyth Sommer",
+    "party_id": 4,
+    "birth_date": "20 de junio de 1982",
+    "age": 43,
+    "education": "Estudió en el Colegio Alexander von Humboldt. Inició estudios de Ingeniería Industrial en la Universidad de San Martín de Porres (no concluidos). Concluyó la carrera de Administración de Empresas en la Universidad Peruana de Ciencias Aplicadas en 2021. También fue educado en Esade y Universidad de Lima.",
+    "experience": "Alcalde del distrito de La Victoria (2019-2020). Primer regidor del distrito de La Victoria. Alcalde interino del distrito de La Victoria",
+    "biography": "George Forsyth inició su carrera política como primer regidor del distrito de La Victoria, llegando a ser alcalde interino, y luego fue elegido alcalde del mismo distrito entre 2019 y 2020. Renunció a la alcaldía para postular a las elecciones presidenciales de 2021, y actualmente milita en el partido Somos Perú, lo que lo posiciona como un probable candidato para futuras elecciones.",
+    "profile_image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/George_Forsyth%2C_alcalde_de_La_Victoria.jpg/250px-George_Forsyth%2C_alcalde_de_La_Victoria.jpg",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/George_Forsyth%2C_alcalde_de_La_Victoria.jpg/250px-George_Forsyth%2C_alcalde_de_La_Victoria.jpg",
+    "wikipedia_url": "https://es.wikipedia.org/wiki/George_Forsyth",
+    "position": "Candidato Presidencial 2026",
+    "region": "Nacional",
+    "created_at": "2025-11-08T16:58:46.753Z"
+  },
+  {
+    "id": 5,
+    "full_name": "Hernando de Soto Polar",
+    "party_id": 5,
+    "birth_date": "2 de junio de 1941",
+    "age": 84,
+    "education": "Estudió en la Pontificia Universidad Católica del Perú, con posgrado en el Instituto Universitario de Altos Estudios Internacionales y el Graduate Institute of International and Development Studies.",
+    "experience": "Presidente del Instituto Libertad y Democracia (ILD). Responsable del diseño del «Fujishock». Asesor de Alberto Fujimori para la elaboración de la Constitución Política de 1993. Candidato presidencial en las elecciones generales de 2021",
+    "biography": "Hernando de Soto es un economista y político peruano, reconocido por sus estudios sobre la economía informal y derechos de propiedad. Fue una figura clave en las reformas económicas de Alberto Fujimori, incluyendo el «Fujishock» y la Constitución de 1993, y preside el Instituto Libertad y Democracia (ILD). Tras postularse a la presidencia en 2021, mantiene su actividad política con el partido Progresemos (2024-2025), lo que lo posiciona como un probable candidato para futuras elecciones.",
+    "profile_image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Hernando_de_Soto_president.jpg/250px-Hernando_de_Soto_president.jpg",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Hernando_de_Soto_president.jpg/250px-Hernando_de_Soto_president.jpg",
+    "wikipedia_url": "https://es.wikipedia.org/wiki/Hernando_de_Soto_(economista)",
+    "position": "Candidato Presidencial 2026",
+    "region": "Nacional",
+    "created_at": "2025-11-08T16:59:03.376Z"
+  },
+  {
+    "id": 6,
+    "full_name": "César Acuña Peralta",
+    "party_id": 6,
+    "birth_date": "10 de agosto de 1952",
+    "age": 73,
+    "education": "Ingeniería Química en la Universidad Nacional de Trujillo; estudios en la Universidad de Lima y la Universidad Complutense de Madrid.",
+    "experience": "Gobernador regional de La Libertad (2015, 2023-2025). Alcalde de la provincia de Trujillo (en 2 ocasiones). Congresista de la república (2 periodos)",
+    "biography": "César Acuña Peralta es un ingeniero químico y empresario que fundó el partido Alianza para el Progreso. Ha ocupado importantes cargos políticos como gobernador regional de La Libertad en dos periodos, alcalde de Trujillo en dos ocasiones y congresista de la república por dos periodos. Su liderazgo partidario y su reciente cargo como gobernador lo posicionan como una figura relevante para futuras elecciones.",
+    "profile_image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/C%C3%A9sar_Acu%C3%B1a_Peralta.jpg/250px-C%C3%A9sar_Acu%C3%B1a_Peralta.jpg",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/C%C3%A9sar_Acu%C3%B1a_Peralta.jpg/250px-C%C3%A9sar_Acu%C3%B1a_Peralta.jpg",
+    "wikipedia_url": "https://es.wikipedia.org/wiki/César_Acuña",
+    "position": "Candidato Presidencial 2026",
+    "region": "Nacional",
+    "created_at": "2025-11-08T16:59:14.113Z"
+  },
+  {
+    "id": 7,
+    "full_name": "Yonhy Lescano Ancieta",
+    "party_id": 7,
+    "birth_date": "15 de febrero de 1959",
+    "age": 66,
+    "education": "Estudió Derecho en la Universidad Católica de Santa María, obteniendo el título de abogado en 1982. Realizó una maestría en Derecho Privado en la Universidad de Chile en 1985.",
+    "experience": "Congresista de la República (4 periodos). Candidato presidencial (2021)",
+    "biography": "Yonhy Lescano inició su carrera política en el año 2000 y se desempeñó como congresista de la república durante cuatro periodos. Fue candidato presidencial por Acción Popular en las elecciones generales de 2021. Desde 2024, es miembro del partido Cooperación Popular, lo que sugiere una continuidad en su actividad política con miras a futuras elecciones.",
+    "profile_image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Yonhy_Lescano.jpg/250px-Yonhy_Lescano.jpg",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Yonhy_Lescano.jpg/250px-Yonhy_Lescano.jpg",
+    "wikipedia_url": "https://es.wikipedia.org/wiki/Yonhy_Lescano",
+    "position": "Candidato Presidencial 2026",
+    "region": "Nacional",
+    "created_at": "2025-11-08T16:59:27.469Z"
+  }
+];

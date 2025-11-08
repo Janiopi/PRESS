@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 // import { supabase } from '../lib/supabase'; // Comentado temporalmente
 import { PoliticalParty, Candidate } from '../types';
-import { mockParties, mockCandidates } from '../data/mockCandidates'; // Datos simulados
+// Datos reales scrapeados de Wikipedia + generados con IA
+import { partidos as mockParties } from '../data/partidosReales';
+import { candidatos as mockCandidates } from '../data/candidatosReales';
 import { Building2, ChevronRight, Filter } from 'lucide-react';
 import CandidateModal from './CandidateModal';
 
