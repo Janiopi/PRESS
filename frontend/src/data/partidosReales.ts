@@ -11,7 +11,7 @@ export const partidos = [
     "color": "#FF6B35",
     "ideology": "Derecha",
     "founded_year": 2000,
-    "logo_url": null,
+    "logo_url": 'Media/fuerza-popular.png',
     "created_at": "2025-11-08T16:58:03.662Z"
   },
   {
@@ -21,9 +21,10 @@ export const partidos = [
     "color": "#1E90FF",
     "ideology": "Derecha",
     "founded_year": 2000,
-    "logo_url": null,
+    "logo_url": 'Media/RENOVACION-POPULAR.jpg',
     "created_at": "2025-11-08T16:58:20.583Z"
   },
+  /*
   {
     "id": 3,
     "name": "Nuevo Perú",
@@ -31,9 +32,10 @@ export const partidos = [
     "color": "#E63946",
     "ideology": "Izquierda",
     "founded_year": 2000,
-    "logo_url": null,
+    "logo_url": 'Media/',
     "created_at": "2025-11-08T16:58:34.190Z"
   },
+  */
   {
     "id": 4,
     "name": "Somos Perú",
@@ -41,9 +43,10 @@ export const partidos = [
     "color": "#FFA726",
     "ideology": "Centro",
     "founded_year": 2000,
-    "logo_url": null,
+    "logo_url": 'Media/somos-peru-3.jpg',
     "created_at": "2025-11-08T16:58:46.753Z"
   },
+  /*
   {
     "id": 5,
     "name": "Progresemos (2024-2025)",
@@ -54,6 +57,7 @@ export const partidos = [
     "logo_url": null,
     "created_at": "2025-11-08T16:59:03.376Z"
   },
+  */
   {
     "id": 6,
     "name": "Alianza para el Progreso",
@@ -61,7 +65,7 @@ export const partidos = [
     "color": "#4CAF50",
     "ideology": "Centro",
     "founded_year": 2000,
-    "logo_url": null,
+    "logo_url": 'Media/Alianza-para-el-progreso.webp',
     "created_at": "2025-11-08T16:59:14.113Z"
   },
   {
@@ -71,7 +75,7 @@ export const partidos = [
     "color": "#D32F2F",
     "ideology": "Derecha",
     "founded_year": 2000,
-    "logo_url": null,
+    "logo_url": 'Media/coop-popular.jpg',
     "created_at": "2025-11-08T16:59:27.469Z"
   }
 ];
