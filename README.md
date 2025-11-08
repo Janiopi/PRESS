@@ -7,8 +7,14 @@ Sistema web que proporciona información política verificada con explicaciones 
 ## 📋 Características
 
 - **Voto Informado 2026**: Información detallada sobre candidatos y sus propuestas
+  - 🤖 **Explicaciones con IA (Gemini)**: Análisis inteligente de cada candidato
+  - Ver biografía, experiencia, propuestas y denuncias
+  - Filtrar por región
 - **Chat Político**: Asistente de IA para responder preguntas sobre política
 - **Noticias Explicadas**: Noticias políticas verificadas con explicaciones simplificadas
+  - Explicaciones para jóvenes (lenguaje simple)
+  - Explicaciones para expertos (análisis profundo)
+  - Rating de confiabilidad de fuentes
 
 ## 🛠️ Tecnologías
 
@@ -18,10 +24,12 @@ Sistema web que proporciona información política verificada con explicaciones 
 - Vite
 - Tailwind CSS
 - Supabase Client
+- **Google Gemini AI** (Explicaciones inteligentes)
 - Lucide React (iconos)
 
 ### Backend
 - Supabase (Base de datos PostgreSQL + Auth + Storage)
+- Google Gemini API (Generación de contenido con IA)
 
 ## 📦 Requisitos Previos
 
@@ -56,12 +64,15 @@ npm install
 
 #### 2.3 Configurar Variables de Entorno
 
-Crea o edita el archivo `.env` en la carpeta `frontend/` con tus credenciales de Supabase:
+Crea o edita el archivo `.env` en la carpeta `frontend/` con tus credenciales:
 
 ```env
 # Supabase Configuration
 VITE_SUPABASE_URL=tu_project_url_aqui
 VITE_SUPABASE_ANON_KEY=tu_anon_key_aqui
+
+# Google Gemini AI Configuration
+VITE_GEMINI_API_KEY=tu_api_key_de_gemini_aqui
 ```
 
 **¿Cómo obtener las credenciales de Supabase?**
@@ -72,6 +83,15 @@ VITE_SUPABASE_ANON_KEY=tu_anon_key_aqui
 4. Copia:
    - **Project URL** → `VITE_SUPABASE_URL`
    - **anon/public key** → `VITE_SUPABASE_ANON_KEY`
+
+**¿Cómo obtener la API Key de Gemini?** 🤖
+
+1. Ve a [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Inicia sesión con tu cuenta de Google
+3. Click en **"Get API Key"** o **"Create API Key"**
+4. Copia la API key generada → `VITE_GEMINI_API_KEY`
+
+> 📖 **Guía completa**: Ver `GEMINI_INTEGRATION_GUIDE.md` para más detalles
 
 ### 3. Configurar la Base de Datos (Supabase)
 

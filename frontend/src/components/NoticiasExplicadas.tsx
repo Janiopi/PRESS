@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
+// import { supabase } from '../lib/supabase'; // Comentado temporalmente
 import { NewsArticle } from '../types';
+import { mockNews } from '../data/mockNews'; // Datos simulados
 import {
   Newspaper,
   Star,
@@ -23,14 +24,16 @@ export default function NoticiasExplicadas() {
 
   const loadNews = async () => {
     try {
-      const { data } = await supabase
-        .from('news_articles')
-        .select('*')
-        .order('published_date', { ascending: false });
+      // TODO: Reemplazar con datos reales de Supabase cuando esté listo
+      // const { data } = await supabase
+      //   .from('news_articles')
+      //   .select('*')
+      //   .order('published_date', { ascending: false });
 
-      if (data) {
-        setNews(data);
-      }
+      // Usando datos simulados por ahora
+      await new Promise(resolve => setTimeout(resolve, 500)); // Simular delay de red
+      setNews(mockNews);
+      
     } catch (error) {
       console.error('Error loading news:', error);
     } finally {
