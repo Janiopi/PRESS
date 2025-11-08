@@ -61,7 +61,7 @@ export default function NoticiasExplicadas() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-accent-pink border-t-transparent"></div>
       </div>
     );
   }
@@ -71,13 +71,13 @@ export default function NoticiasExplicadas() {
       <div className="max-w-4xl mx-auto">
         <button
           onClick={() => setSelectedNews(null)}
-          className="mb-4 text-blue-600 hover:text-blue-800 font-medium flex items-center space-x-2"
+          className="mb-4 text-accent-pink hover:text-white font-medium flex items-center space-x-2"
         >
           <span>← Volver a noticias</span>
         </button>
 
-        <article className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white p-6">
+        <article className="bg-background-card rounded-xl shadow-lg overflow-hidden border border-primary-light">
+          <div className="bg-gradient-to-r from-accent-red to-primary text-white p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-2">
                 <Newspaper className="w-5 h-5" />
@@ -88,7 +88,7 @@ export default function NoticiasExplicadas() {
               </div>
             </div>
             <h1 className="text-3xl font-bold mb-3">{selectedNews.title}</h1>
-            <div className="flex items-center space-x-2 text-blue-100">
+            <div className="flex items-center space-x-2 text-pink-100">
               <Calendar className="w-4 h-4" />
               <span className="text-sm">{formatDate(selectedNews.published_date)}</span>
             </div>
@@ -96,16 +96,16 @@ export default function NoticiasExplicadas() {
 
           <div className="p-6">
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Resumen</h3>
-              <p className="text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+              <h3 className="text-lg font-semibold text-gray-100 mb-2">Resumen</h3>
+              <p className="text-gray-200 leading-relaxed bg-primary-dark p-4 rounded-lg">
                 {selectedNews.summary}
               </p>
             </div>
 
-            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 mb-6">
+            <div className="bg-gradient-to-r from-primary via-primary-dark to-accent-red rounded-xl p-6 mb-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
-                  <Sparkles className="w-5 h-5 text-blue-600" />
+                <h3 className="text-lg font-semibold text-white flex items-center space-x-2">
+                  <Sparkles className="w-5 h-5 text-accent-pink" />
                   <span>Explicación con IA</span>
                 </h3>
                 <div className="flex space-x-2">
@@ -113,8 +113,8 @@ export default function NoticiasExplicadas() {
                     onClick={() => setExplanationMode('youth')}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                       explanationMode === 'youth'
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'bg-white text-gray-700 hover:bg-gray-50'
+                        ? 'bg-accent-red text-white shadow-md'
+                        : 'bg-background-card text-gray-200 hover:bg-primary-dark'
                     }`}
                   >
                     Para Jóvenes
@@ -123,8 +123,8 @@ export default function NoticiasExplicadas() {
                     onClick={() => setExplanationMode('expert')}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                       explanationMode === 'expert'
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'bg-white text-gray-700 hover:bg-gray-50'
+                        ? 'bg-accent-red text-white shadow-md'
+                        : 'bg-background-card text-gray-200 hover:bg-primary-dark'
                     }`}
                   >
                     <div className="flex items-center space-x-2">
@@ -135,8 +135,8 @@ export default function NoticiasExplicadas() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-4">
-                <p className="text-gray-700 leading-relaxed">
+              <div className="bg-background-card rounded-lg p-4">
+                <p className="text-gray-200 leading-relaxed">
                   {explanationMode === 'youth'
                     ? selectedNews.youth_explanation
                     : selectedNews.expert_explanation}
@@ -147,14 +147,14 @@ export default function NoticiasExplicadas() {
             {selectedNews.tags.length > 0 && (
               <div className="mb-6">
                 <div className="flex items-center space-x-2 mb-3">
-                  <Tag className="w-4 h-4 text-gray-600" />
-                  <h3 className="text-sm font-semibold text-gray-600 uppercase">Etiquetas</h3>
+                  <Tag className="w-4 h-4 text-gray-300" />
+                  <h3 className="text-sm font-semibold text-gray-300 uppercase">Etiquetas</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {selectedNews.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"
+                      className="px-3 py-1 bg-primary-dark text-accent-pink rounded-full text-sm font-medium"
                     >
                       {tag}
                     </span>
@@ -167,7 +167,7 @@ export default function NoticiasExplicadas() {
               href={selectedNews.source_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-medium"
+              className="inline-flex items-center space-x-2 text-accent-pink hover:text-white font-medium"
             >
               <span>Leer artículo completo</span>
               <ExternalLink className="w-4 h-4" />
@@ -181,8 +181,8 @@ export default function NoticiasExplicadas() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold text-gray-900">Noticias Explicadas</h2>
-        <p className="text-gray-600 mt-1">
+        <h2 className="text-3xl font-bold text-white">Noticias Explicadas</h2>
+        <p className="text-gray-300 mt-1">
           Noticias políticas verificadas con explicaciones en lenguaje sencillo
         </p>
       </div>
@@ -191,14 +191,14 @@ export default function NoticiasExplicadas() {
         {news.map((article) => (
           <article
             key={article.id}
-            className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all overflow-hidden border border-gray-100 cursor-pointer group"
+            className="bg-background-card rounded-xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-primary-light cursor-pointer group"
             onClick={() => setSelectedNews(article)}
           >
             <div className="p-6">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2">
-                  <Newspaper className="w-4 h-4 text-blue-600" />
-                  <span className="text-sm font-semibold text-blue-600">
+                  <Newspaper className="w-4 h-4 text-accent-pink" />
+                  <span className="text-sm font-semibold text-accent-pink">
                     {article.source_name}
                   </span>
                 </div>
@@ -207,25 +207,25 @@ export default function NoticiasExplicadas() {
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent-pink transition-colors line-clamp-2">
                 {article.title}
               </h3>
 
-              <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+              <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
                 {article.summary}
               </p>
 
-              <div className="bg-blue-50 rounded-lg p-3 mb-4">
+              <div className="bg-primary-dark rounded-lg p-3 mb-4">
                 <div className="flex items-start space-x-2">
-                  <Sparkles className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-gray-700 line-clamp-2">
+                  <Sparkles className="w-4 h-4 text-accent-pink flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-gray-200 line-clamp-2">
                     {article.youth_explanation}
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                <div className="flex items-center space-x-2 text-gray-500">
+              <div className="flex items-center justify-between pt-3 border-t border-primary-light">
+                <div className="flex items-center space-x-2 text-gray-400">
                   <Calendar className="w-4 h-4" />
                   <span className="text-xs">{formatDate(article.published_date)}</span>
                 </div>
@@ -235,13 +235,13 @@ export default function NoticiasExplicadas() {
                     {article.tags.slice(0, 2).map((tag, index) => (
                       <span
                         key={index}
-                        className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs"
+                        className="px-2 py-1 bg-primary-dark text-gray-300 rounded text-xs"
                       >
                         {tag}
                       </span>
                     ))}
                     {article.tags.length > 2 && (
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-gray-400">
                         +{article.tags.length - 2}
                       </span>
                     )}
@@ -250,7 +250,7 @@ export default function NoticiasExplicadas() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-3 text-white text-sm font-medium flex items-center justify-between group-hover:from-blue-700 group-hover:to-cyan-700 transition-all">
+            <div className="bg-gradient-to-r from-accent-red to-primary px-6 py-3 text-white text-sm font-medium flex items-center justify-between group-hover:from-accent-pink group-hover:to-accent-red transition-all">
               <span>Leer explicación completa</span>
               <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>
@@ -260,8 +260,8 @@ export default function NoticiasExplicadas() {
 
       {news.length === 0 && (
         <div className="text-center py-12">
-          <Newspaper className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <p className="text-gray-500 text-lg">No hay noticias disponibles</p>
+          <Newspaper className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+          <p className="text-gray-400 text-lg">No hay noticias disponibles</p>
         </div>
       )}
     </div>
