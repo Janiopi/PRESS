@@ -1,13 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Sparkles } from 'lucide-react';
+import { Send, Bot, User, Sparkles, Loader2 } from 'lucide-react';
 import { ChatMessage } from '../types';
+import { chatPoliticalAssistant } from '../services/geminiService';
 
 export default function ChatPolitico() {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'assistant',
       content:
-        '¡Hola! Soy tu asistente político especializado. Puedo ayudarte con información sobre candidatos, propuestas y noticias políticas. ¿Qué te gustaría saber?',
+        '¡Hola! Soy tu asistente político especializado potenciado con IA. Puedo ayudarte con información sobre candidatos, propuestas y noticias políticas de las elecciones 2026. ¿Qué te gustaría saber?',
       timestamp: new Date().toISOString(),
     },
   ]);
@@ -33,76 +34,66 @@ export default function ChatPolitico() {
     };
 
     setMessages((prev) => [...prev, userMessage]);
+    const userInput = input;
     setInput('');
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      // Usar Gemini AI para generar la respuesta
+      console.log('🤖 Enviando mensaje a Gemini:', userInput);
+      const response = await chatPoliticalAssistant(userInput, messages);
+      console.log('✅ Respuesta recibida:', response);
+      
       const assistantMessage: ChatMessage = {
         role: 'assistant',
-        content: generateResponse(input),
+        content: response,
         timestamp: new Date().toISOString(),
       };
+      
       setMessages((prev) => [...prev, assistantMessage]);
+    } catch (error: any) {
+      console.error('❌ Error en chat:', error);
+      
+      const errorMessage: ChatMessage = {
+        role: 'assistant',
+        content: `Error: ${error?.message || 'Problema desconocido'}. Por favor, revisa la consola para más detalles.`,
+        timestamp: new Date().toISOString(),
+      };
+      
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
-  const generateResponse = (query: string): string => {
-    const lowerQuery = query.toLowerCase();
-
-    if (lowerQuery.includes('keiko') || lowerQuery.includes('fujimori')) {
-      return 'Keiko Fujimori es la candidata de Fuerza Popular. Ha sido candidata presidencial en 2011, 2016 y 2021. Su partido propone reformas en educación, economía y salud. Puedes ver más detalles en la sección "Voto Informado 2026".';
-    }
-
-    if (lowerQuery.includes('rafael') || lowerQuery.includes('lópez aliaga')) {
-      return 'Rafael López Aliaga es el candidato de Renovación Popular y actual alcalde de Lima. Es empresario y político conservador. Sus propuestas se centran en la reactivación económica y reformas sociales.';
-    }
-
-    if (lowerQuery.includes('propuesta') || lowerQuery.includes('educación')) {
-      return 'Los partidos tienen diversas propuestas en educación: modernización del sistema educativo, implementación de tecnología en aulas, capacitación docente y aumento del presupuesto educativo. Revisa la sección "Voto Informado 2026" para ver propuestas específicas por partido.';
-    }
-
-    if (lowerQuery.includes('economía') || lowerQuery.includes('inflación')) {
-      return 'Las propuestas económicas incluyen: reducción de impuestos a pequeñas empresas, programas de empleo juvenil, apoyo a sectores productivos y control de la inflación. Cada partido tiene su propio enfoque económico.';
-    }
-
-    if (lowerQuery.includes('salud')) {
-      return 'Las propuestas en salud incluyen: construcción de hospitales en zonas rurales, contratación de personal médico, acceso gratuito a medicamentos esenciales y fortalecimiento del sistema de salud pública.';
-    }
-
-    if (lowerQuery.includes('denuncias') || lowerQuery.includes('judicial')) {
-      return 'Algunos candidatos tienen casos judiciales en proceso. Puedes ver los detalles de cada caso, su estado actual y las fuentes oficiales en el perfil de cada candidato en la sección "Voto Informado 2026".';
-    }
-
-    if (lowerQuery.includes('comparar') || lowerQuery.includes('diferencia')) {
-      return 'Para comparar candidatos o propuestas, te recomiendo revisar la sección "Voto Informado 2026" donde puedes ver las propuestas de cada partido organizadas por categoría (educación, economía, salud, etc.).';
-    }
-
-    return 'Entiendo tu pregunta. Te recomiendo explorar la sección "Voto Informado 2026" para ver información detallada de candidatos y propuestas, o la sección "Noticias Explicadas" para estar al día con las últimas novedades políticas. ¿Hay algo específico sobre algún candidato o propuesta que quieras saber?';
+  const handleSuggestedQuestion = (question: string) => {
+    setInput(question);
   };
 
   const suggestedQuestions = [
-    '¿Qué propone Keiko Fujimori sobre educación?',
-    'Compara las propuestas económicas de los partidos',
-    '¿Cuántas denuncias tiene Rafael López Aliaga?',
-    'Explícame las propuestas de salud',
+    '¿Qué propone María Elena Sánchez sobre economía?',
+    'Compara las propuestas de salud de los candidatos',
+    '¿Cuáles candidatos tienen denuncias activas?',
+    'Explícame las propuestas de descentralización',
+    '¿Quién propone educación gratuita?',
+    'Háblame de la experiencia de Fernando Castillo',
   ];
 
   return (
     <div className="flex flex-col h-[calc(100vh-12rem)] max-w-4xl mx-auto">
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-t-xl">
+      <div className="bg-gradient-to-r from-accent-red via-primary to-primary-dark text-white p-6 rounded-t-xl border border-accent-pink">
         <div className="flex items-center space-x-3">
           <div className="bg-white bg-opacity-20 p-3 rounded-full">
             <Sparkles className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold">Chat RAG Político</h2>
-            <p className="text-sm text-purple-100">Asistente con información verificada</p>
+            <h2 className="text-2xl font-bold">Chat Político con IA</h2>
+            <p className="text-sm text-pink-100">Asistente inteligente con información verificada</p>
           </div>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto bg-gray-50 p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto bg-background-card border-x border-primary-light p-6 space-y-4">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -113,8 +104,8 @@ export default function ChatPolitico() {
             <div
               className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
                 message.role === 'assistant'
-                  ? 'bg-gradient-to-br from-purple-500 to-blue-500'
-                  : 'bg-gradient-to-br from-blue-500 to-cyan-500'
+                  ? 'bg-gradient-to-br from-accent-red to-primary'
+                  : 'bg-gradient-to-br from-primary to-accent-pink'
               }`}
             >
               {message.role === 'assistant' ? (
@@ -131,11 +122,11 @@ export default function ChatPolitico() {
               <div
                 className={`inline-block p-4 rounded-2xl ${
                   message.role === 'assistant'
-                    ? 'bg-white shadow-md text-gray-800'
-                    : 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md'
+                    ? 'bg-primary-dark shadow-lg text-gray-200 border border-primary-light'
+                    : 'bg-gradient-to-r from-accent-red to-primary text-white shadow-lg'
                 }`}
               >
-                <p className="text-sm leading-relaxed">{message.content}</p>
+                <p className="text-sm leading-relaxed whitespace-pre-line">{message.content}</p>
               </div>
               <p className="text-xs text-gray-500 mt-1 px-2">
                 {new Date(message.timestamp).toLocaleTimeString('es-PE', {
@@ -149,15 +140,11 @@ export default function ChatPolitico() {
 
         {isLoading && (
           <div className="flex items-start space-x-3">
-            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
-              <Bot className="w-6 h-6 text-white" />
+            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-accent-red to-primary flex items-center justify-center">
+              <Loader2 className="w-6 h-6 text-white animate-spin" />
             </div>
-            <div className="bg-white p-4 rounded-2xl shadow-md">
-              <div className="flex space-x-2">
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100"></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-200"></div>
-              </div>
+            <div className="bg-primary-dark p-4 rounded-2xl shadow-lg border border-primary-light">
+              <p className="text-gray-400 text-sm">Pensando con IA...</p>
             </div>
           </div>
         )}
@@ -166,14 +153,17 @@ export default function ChatPolitico() {
       </div>
 
       {messages.length === 1 && (
-        <div className="bg-white border-t border-gray-200 p-4">
-          <p className="text-sm text-gray-600 mb-3">Preguntas sugeridas:</p>
+        <div className="bg-background-card border-x border-t border-primary-light p-4">
+          <p className="text-sm text-gray-400 mb-3 flex items-center space-x-2">
+            <Sparkles className="w-4 h-4 text-accent-pink" />
+            <span>Preguntas sugeridas:</span>
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {suggestedQuestions.map((question, index) => (
               <button
                 key={index}
-                onClick={() => setInput(question)}
-                className="text-left p-3 bg-gray-50 hover:bg-blue-50 rounded-lg text-sm text-gray-700 hover:text-blue-700 transition-colors border border-gray-200 hover:border-blue-300"
+                onClick={() => handleSuggestedQuestion(question)}
+                className="text-left p-3 bg-primary-dark hover:bg-accent-red rounded-lg text-sm text-gray-300 hover:text-white transition-all border border-primary-light hover:border-accent-pink"
               >
                 {question}
               </button>
@@ -182,23 +172,27 @@ export default function ChatPolitico() {
         </div>
       )}
 
-      <div className="bg-white border-t border-gray-200 p-4 rounded-b-xl">
+      <div className="bg-background-card border-x border-b border-primary-light p-4 rounded-b-xl">
         <div className="flex items-center space-x-2">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+            onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSend()}
             placeholder="Pregunta sobre candidatos, propuestas o noticias..."
-            className="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 px-4 py-3 bg-primary-dark border border-primary-light text-white placeholder-gray-400 rounded-full focus:outline-none focus:ring-2 focus:ring-accent-pink focus:border-transparent"
             disabled={isLoading}
           />
           <button
             onClick={handleSend}
             disabled={!input.trim() || isLoading}
-            className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white p-3 rounded-full hover:from-blue-700 hover:to-cyan-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+            className="bg-gradient-to-r from-accent-red to-primary text-white p-3 rounded-full hover:from-accent-pink hover:to-accent-red transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
           >
-            <Send className="w-5 h-5" />
+            {isLoading ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <Send className="w-5 h-5" />
+            )}
           </button>
         </div>
       </div>

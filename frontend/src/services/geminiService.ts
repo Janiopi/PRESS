@@ -24,8 +24,8 @@ export async function generateCandidateExplanation(
   }
 
   try {
-    // Usar el modelo Gemini Pro
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    // Usar Gemini 2.5 Flash - Modelo más reciente y rápido
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     // Preparar el contexto del candidato
     const proposalsText = proposals.length > 0
@@ -102,7 +102,7 @@ export async function generateYouthExplanation(
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     const prompt = `
 Explica quién es ${candidate.full_name} del partido ${partyName} como si le hablaras a un joven de 18-25 años que va a votar por primera vez.
@@ -143,7 +143,7 @@ export async function compareCandidates(
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     const prompt = `
 Compara objetivamente a estos dos candidatos presidenciales para las elecciones de Perú 2026:
@@ -190,7 +190,7 @@ export async function askAboutCandidate(
   }
 
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     const context = `
 Candidato: ${candidate.full_name}
@@ -218,5 +218,95 @@ Máximo 100 palabras.
   } catch (error) {
     console.error('Error respondiendo pregunta:', error);
     return 'No pude responder la pregunta en este momento.';
+  }
+}
+
+/**
+ * Chat político RAG - Responde preguntas sobre política peruana usando contexto
+ */
+export async function chatPoliticalAssistant(
+  userMessage: string,
+  conversationHistory: Array<{ role: string; content: string }>
+): Promise<string> {
+  if (!genAI) {
+    return 'El chat con IA no está disponible. Por favor, configura tu API key de Gemini.';
+  }
+
+  try {
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+
+    // Construir historial de conversación
+    const history = conversationHistory
+      .slice(-6) // Últimos 6 mensajes para contexto
+      .map(msg => `${msg.role === 'user' ? 'Usuario' : 'Asistente'}: ${msg.content}`)
+      .join('\n');
+
+    const prompt = `
+Eres un asistente político especializado en las elecciones presidenciales de Perú 2026.
+
+CONTEXTO DE CANDIDATOS DISPONIBLES:
+1. María Elena Sánchez (APP) - Economista, ex Ministra de Economía
+   - Propuestas: Formalización de MYPES, educación técnica, Sistema Único de Salud
+   - Denuncias: Investigación archivada por conflicto de intereses (2021)
+
+2. Carlos Alberto Mendoza (Fuerza Popular) - Abogado, congresista
+   - Propuestas: Seguridad ciudadana, reforma judicial, exoneración tributaria
+   - Denuncias: Investigación por enriquecimiento ilícito (en curso)
+
+3. Jorge Luis Pacheco (Acción Popular) - Ingeniero, ex alcalde de Cusco
+   - Propuestas: Descentralización fiscal, modernización del agro, turismo
+   - Denuncias: Multa administrativa pagada, denuncia por nepotismo desestimada
+
+4. Rafael Antonio Gutiérrez (Renovación Popular) - Empresario
+   - Propuestas: Reducir el Estado, apertura comercial, estado de emergencia
+   - Denuncias: Demanda laboral (resuelta), investigación tributaria (multa pagada)
+
+5. Ana Patricia Torres (Juntos por el Perú) - Socióloga, activista
+   - Propuestas: Educación pública gratuita, salud universal, bono familiar
+   - Denuncias: Denuncia por difamación archivada, investigación ONG sin responsabilidad penal
+
+6. Fernando José Castillo (Avanza País) - Médico, ex Ministro de Salud
+   - Propuestas: Salud preventiva, hub científico, Estado digital
+   - Denuncias: Investigación compras COVID archivada, negligencia médica desestimada
+
+HISTORIAL DE CONVERSACIÓN:
+${history}
+
+PREGUNTA ACTUAL DEL USUARIO:
+${userMessage}
+
+INSTRUCCIONES:
+- Responde de manera objetiva, clara y directa
+- Usa la información del contexto cuando sea relevante
+- Si mencionas denuncias, siempre incluye su estado actual
+- Si no tienes información exacta, sugiere revisar "Voto Informado 2026"
+- Mantén un tono neutral, no tomes partido
+- Máximo 150 palabras
+- Si te preguntan por otros candidatos no listados, indica que la información aún se está actualizando
+
+Responde en español de forma natural y conversacional:
+`;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    return response.text();
+
+  } catch (error: any) {
+    console.error('❌ Error en chat político:', error);
+    console.error('Error detallado:', {
+      message: error?.message,
+      status: error?.status,
+      response: error?.response
+    });
+    
+    // Mensajes de error más específicos
+    if (error?.message?.includes('API key')) {
+      return '⚠️ Error: API key inválida o no configurada correctamente. Por favor verifica tu configuración.';
+    }
+    if (error?.message?.includes('quota') || error?.message?.includes('limit')) {
+      return '⚠️ Se ha alcanzado el límite de solicitudes. Por favor intenta más tarde.';
+    }
+    
+    return `Disculpa, tuve un problema procesando tu mensaje. Error: ${error?.message || 'Desconocido'}`;
   }
 }
