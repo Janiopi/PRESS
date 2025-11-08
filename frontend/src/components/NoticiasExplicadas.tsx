@@ -41,17 +41,6 @@ export default function NoticiasExplicadas() {
     }
   };
 
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star
-        key={i}
-        className={`w-4 h-4 ${
-          i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-        }`}
-      />
-    ));
-  };
-
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('es-PE', {
@@ -85,9 +74,6 @@ export default function NoticiasExplicadas() {
               <div className="flex items-center space-x-2">
                 <Newspaper className="w-5 h-5" />
                 <span className="font-semibold">{selectedNews.source_name}</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                {renderStars(selectedNews.reliability_rating)}
               </div>
             </div>
             <h1 className="text-3xl font-bold mb-3">{selectedNews.title}</h1>
@@ -204,9 +190,6 @@ export default function NoticiasExplicadas() {
                   <span className="text-sm font-semibold text-accent-pink">
                     {article.source_name}
                   </span>
-                </div>
-                <div className="flex items-center space-x-1">
-                  {renderStars(article.reliability_rating)}
                 </div>
               </div>
 
