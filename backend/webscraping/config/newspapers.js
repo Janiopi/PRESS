@@ -6,7 +6,7 @@ const newspapers = [
   {
     name: "El Comercio",
     url: "https://elcomercio.pe/politica/",
-    rank: 1,
+    rank: 3,
     selector: {
       articles: ".story-item",
       title: ".story-item__content h2 a",
@@ -17,57 +17,39 @@ const newspapers = [
     needsJavascript: false
   },
   {
+    name: "El Peruano",
+    url: "https://elperuano.pe/politica",
+    rank: 4,
+    selector: {
+      // Use broader fallbacks because El Peruano markup varies between sections
+      articles: ".card, .card-content, .contenedor-cards-categoria .card, article.article-item",
+      title: "h2 a",
+      date: ".article-date",
+      link: "h2 a",
+      content: null,
+      // Candidate selectors tried when extracting title from a preview card
+      candidateSelectors: ['.nota-height .card-content a', '.card-content a', '.titulo-card a', 'h2 a', 'h3 a', 'a[href*="/noticia/"]']
+    },
+    needsJavascript: false
+  },
+
+  {
     name: "La República",
     url: "https://larepublica.pe/politica/",
     rank: 2,
     selector: {
-      articles: "article.article-item",
-      title: "h2 a",
-      date: ".article-date",
-      link: "h2 a",
+      articles: ".ListSection_list__section--item__zeP_z",
+      title: ".ListSection_list__section--title__hwhjX a",
+      date: ".ListSection_list__section--time__2cnSA",
+      link: "a",
       content: null
     },
-    needsJavascript: false
+    // By default we attempted to filter only political articles; set to false to return all
+    needsJavascript: true,
+    filterPolitical: false
   },
-  {
-    name: "RPP",
-    url: "https://rpp.pe/politica",
-    rank: 3,
-    selector: {
-      articles: ".article-preview",
-      title: ".article-preview__title a",
-      date: ".article-preview__date",
-      link: ".article-preview__title a",
-      content: null
-    },
-    needsJavascript: false
-  },
-  {
-    name: "Gestión",
-    url: "https://gestion.pe/peru/politica/",
-    rank: 4,
-    selector: {
-      articles: ".w-content-view",
-      title: "h2 a",
-      date: ".time-ago",
-      link: "h2 a",
-      content: null
-    },
-    needsJavascript: true
-  },
-  {
-    name: "Correo",
-    url: "https://diariocorreo.pe/politica/",
-    rank: 5,
-    selector: {
-      articles: ".story-item",
-      title: "h2 a",
-      date: ".story-item__meta time",
-      link: "h2 a",
-      content: null
-    },
-    needsJavascript: false
-  }
+
+
 ];
 
 export default newspapers;

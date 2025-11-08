@@ -1,4 +1,3 @@
-// scrapers/puppeteerScraper.js
 import puppeteer from 'puppeteer';
 import { isPoliticalNews } from './utils.js';
 
@@ -26,7 +25,12 @@ async function humanBehavior(page) {
   });
   
   // Esperar un tiempo aleatorio entre operaciones
-  await page.waitForTimeout(Math.floor(Math.random() * 1000) + 500);
+  const waitMs = Math.floor(Math.random() * 1000) + 500;
+  if (typeof page.waitForTimeout === 'function') {
+    await page.waitForTimeout(waitMs);
+  } else {
+    await new Promise(res => setTimeout(res, waitMs));
+  }
 }
 
 // Función principal de scraping
@@ -56,22 +60,27 @@ export async function scrapeElComercio(newspaper) {
       const limitedArticles = articles.slice(0, 10);
       
       return limitedArticles.map(article => {
-        const titleElement = article.querySelector(selectors.title);
-        const title = titleElement ? titleElement.textContent.trim() : '';
+        // Preferir el selector configurado, si no existe usar el primer <a>
+  // Prefer configured selectors, then known site-specific classes, then any <a>
+  const titleElement = article.querySelector(selectors.title) || article.querySelector('a.story-item__title') || article.querySelector('h2 a') || article.querySelector('a');
+  const linkElement = article.querySelector(selectors.link) || article.querySelector('a.story-item__title') || article.querySelector('h2 a') || article.querySelector('a');
+  const title = titleElement ? titleElement.textContent.trim() : '';
         
         // URL del artículo
         let url = '';
-        if (titleElement && titleElement.href) {
-          url = titleElement.href;
-        } else if (article.querySelector(selectors.link)) {
-          url = article.querySelector(selectors.link).href;
+        if (linkElement) {
+          url = linkElement.href || linkElement.getAttribute('href') || '';
         }
         
         // Encontrar imagen (si existe)
         let imageURL = '';
         const imgElement = article.querySelector('img');
         if (imgElement) {
-          imageURL = imgElement.src || imgElement.getAttribute('data-src') || '';
+          imageURL = imgElement.src || imgElement.getAttribute('data-src') || imgElement.getAttribute('data-srcset') || '';
+          if (!imageURL) {
+            const srcset = imgElement.getAttribute('srcset') || '';
+            if (srcset) imageURL = srcset.split(',')[0].trim().split(' ')[0];
+          }
         }
         
         return { title, url, imageURL };
@@ -193,12 +202,3 @@ export async function scrapeElComercio(newspaper) {
     if (browser) await browser.close();
   }
 }
-
-/*
-// Test
-const searchService = new SearchService();
-const results = await searchService.search('test');
-
-console.log('\nRESULTS...');
-console.dir(results, { depth: null, colors: true });
-*/
